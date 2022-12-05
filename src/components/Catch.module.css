@@ -11,6 +11,25 @@
 .modal {
   position: fixed;
   top: 20vh;
-  left: 20vw;
+  left: 30%;
   z-index: 30;
+}
+
+.modal > img {
+  animation: pokemon infinite 3s alternate;
+}
+@keyframes pokemon {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.modal button {
+  position: absolute;
+  z-index: 50;
 }
