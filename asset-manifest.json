@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/pokemon-minigame-project/static/css/main.9e9a1b7b.css",
+    "main.js": "/pokemon-minigame-project/static/js/main.ee24229d.js",
+    "index.html": "/pokemon-minigame-project/index.html",
+    "main.9e9a1b7b.css.map": "/pokemon-minigame-project/static/css/main.9e9a1b7b.css.map",
+    "main.ee24229d.js.map": "/pokemon-minigame-project/static/js/main.ee24229d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9e9a1b7b.css",
+    "static/js/main.ee24229d.js"
+  ]
+}
