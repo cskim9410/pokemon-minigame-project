@@ -8,10 +8,7 @@ const PokemonList = ({ pokemon, letgo }) => {
       <button onClick={() => letgo(pokemon.id)}>놓아주기</button>
       <button
         onClick={() => {
-          console.log(
-            pokemon.stats[1].stat.name,
-            pokemon.stats[1]["base_stat"]
-          );
+          console.log(pokemon.stats);
         }}
       >
         상세보기
