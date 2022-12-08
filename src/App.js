@@ -1,27 +1,20 @@
 import axios from "axios";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import Catch from "./components/Catch";
 import Header from "./components/Header";
 import PokemonList from "./components/PokemonList";
+import { PokemonContext } from "./store/ContextProvider";
 
 function App() {
   const [appearPokemon, SetAppearPokemon] = useState();
   const [active, setActive] = useState(false);
-  const [catched, setCatched] = useState([]);
   const [tryCount, setTryCount] = useState(2);
   const [loading, setLoading] = useState(true);
-
-  const letgo = (id) => {
-    setCatched((state) => {
-      return state.filter((poke) => poke.id !== id);
-    });
-  };
+  const pokeCtx = useContext(PokemonContext);
 
   const catchHandler = () => {
     if (Math.random() > 0.7) {
-      setCatched((state) => {
-        return [...state, appearPokemon];
-      });
+      pokeCtx.addPok(appearPokemon);
       setTryCount(2);
       setActive(false);
       run();
@@ -65,7 +58,7 @@ function App() {
         <img src={appearPokemon && appearPokemon.sprites.front_default} />
       </div>
       <p>name: {appearPokemon && appearPokemon.name}</p>
-      <p>보유중: {catched.length}</p>
+      <p>보유중: {pokeCtx.pokemon.length}</p>
       <button onClick={clickHandler}>잡기</button>
       <button onClick={run}>도망가기</button>
       {active && (
@@ -78,10 +71,8 @@ function App() {
         />
       )}
       <ul>
-        {catched !== [] &&
-          catched.map((pokemon) => (
-            <PokemonList pokemon={pokemon} letgo={letgo} />
-          ))}
+        {pokeCtx.pokemon !== [] &&
+          pokeCtx.pokemon.map((pokemon) => <PokemonList pokemon={pokemon} />)}
       </ul>
       {/* {catched !== [] &&
         catched.map((pokemon) => <img src={pokemon.sprites.front_default} />)} */}
