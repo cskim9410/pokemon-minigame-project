@@ -1,14 +1,17 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Header = () => {
   return (
     <StyledHeader>
-      <h1>
-        <Image
-          src={`${process.env.PUBLIC_URL}/images/mainlogo.png`}
-          alt="logo"
-        />
-      </h1>
+      <Link to="/">
+        <h1>
+          <Image
+            src={`${process.env.PUBLIC_URL}/images/mainlogo.png`}
+            alt="logo"
+          />
+        </h1>
+      </Link>
       <button>잡은포켓몬</button>
     </StyledHeader>
   );

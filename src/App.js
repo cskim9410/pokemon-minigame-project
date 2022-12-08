@@ -1,17 +1,32 @@
-import axios from "axios";
 import { Fragment, useContext, useEffect, useState } from "react";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Catch from "./components/Catch";
 import Header from "./components/Header";
-import PokemonList from "./components/PokemonList";
 import { PokemonContext } from "./store/ContextProvider";
+import Main from "./components/Main";
+import { getPokemon } from "./api/api";
 
 function App() {
   const [appearPokemon, SetAppearPokemon] = useState();
   const [active, setActive] = useState(false);
   const [tryCount, setTryCount] = useState(2);
-  const [loading, setLoading] = useState(true);
   const pokeCtx = useContext(PokemonContext);
 
+  useEffect(() => {
+    (async () => {
+      const newPok = await getPokemon(Math.floor(Math.random() * 905) + 1);
+      SetAppearPokemon(newPok);
+    })();
+  }, []);
+
+  const clickHandler = () => {
+    setActive(!active);
+  };
+  const run = async () => {
+    const newPok = await getPokemon(Math.floor(Math.random() * 905) + 1);
+    SetAppearPokemon(newPok);
+    setTryCount(2);
+  };
   const catchHandler = () => {
     if (Math.random() > 0.7) {
       pokeCtx.addPok(appearPokemon);
@@ -22,45 +37,8 @@ function App() {
       setTryCount(tryCount - 1);
     }
   };
-
-  useEffect(() => {
-    if (tryCount === 0) {
-      run();
-      setActive(false);
-      setTryCount(2);
-    }
-  }, [tryCount]);
-
-  async function getPokemon(id) {
-    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    const pokemon = res.data;
-    SetAppearPokemon(pokemon);
-    setLoading(false);
-    console.log(pokemon);
-  }
-
-  useEffect(() => {
-    (async () => {
-      await getPokemon(Math.floor(Math.random() * 905) + 1);
-    })();
-  }, []);
-
-  const clickHandler = () => {
-    setActive(!active);
-  };
-  const run = async () => {
-    await getPokemon(Math.floor(Math.random() * 905) + 1);
-  };
   return (
-    <Fragment>
-      <Header />
-      <div>
-        <img src={appearPokemon && appearPokemon.sprites.front_default} />
-      </div>
-      <p>name: {appearPokemon && appearPokemon.name}</p>
-      <p>보유중: {pokeCtx.pokemon.length}</p>
-      <button onClick={clickHandler}>잡기</button>
-      <button onClick={run}>도망가기</button>
+    <BrowserRouter>
       {active && (
         <Catch
           name={appearPokemon.name}
@@ -70,13 +48,21 @@ function App() {
           tryCount={tryCount}
         />
       )}
-      <ul>
-        {pokeCtx.pokemon !== [] &&
-          pokeCtx.pokemon.map((pokemon) => <PokemonList pokemon={pokemon} />)}
-      </ul>
-      {/* {catched !== [] &&
-        catched.map((pokemon) => <img src={pokemon.sprites.front_default} />)} */}
-    </Fragment>
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Main
+              appearPokemon={appearPokemon}
+              run={run}
+              clickHandler={clickHandler}
+              tryCount={tryCount}
+            />
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
