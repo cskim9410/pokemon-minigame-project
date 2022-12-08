@@ -11,7 +11,9 @@ const Modal = ({ img, tryCount, catchHandler }) => {
       남은횟수 : {tryCount}
       <img src={img} />
       <div>
-        <button onClick={() => catchHandler()}>몬스터볼</button>
+        <button type="button" onClick={() => catchHandler()}>
+          <Image src={`${process.env.PUBLIC_URL}/images/button.png`} />
+        </button>
       </div>
     </ModalDiv>
   );
@@ -61,5 +63,15 @@ const ModalDiv = styled.div`
   & button {
     position: absolute;
     z-index: 50;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+  }
+`;
+
+const Image = styled.img`
+  width: 50px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
   }
 `;
