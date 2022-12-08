@@ -1,11 +1,11 @@
-import classes from "./PokemonList.module.css";
 import { useContext } from "react";
 import { PokemonContext } from "./../store/ContextProvider";
+import styled from "styled-components";
 
-const PokemonList = ({ pokemon, letgo }) => {
+const PokemonList = ({ pokemon }) => {
   const pokeCtx = useContext(PokemonContext);
   return (
-    <li key={Math.random()} className={classes.list}>
+    <List key={Math.random()}>
       <img src={pokemon.sprites.front_default} />
       <span>name: {pokemon.name}</span>
       <button onClick={() => pokeCtx.removePok(pokemon.id)}>놓아주기</button>
@@ -16,8 +16,12 @@ const PokemonList = ({ pokemon, letgo }) => {
       >
         상세보기
       </button>
-    </li>
+    </List>
   );
 };
 
 export default PokemonList;
+
+const List = styled.li`
+  border-bottom: 1px solid black;
+`;

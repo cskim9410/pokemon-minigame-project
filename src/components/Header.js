@@ -1,11 +1,34 @@
-import classes from "./Header.module.css";
+import styled from "styled-components";
 
 const Header = () => {
   return (
-    <div className={classes.header}>
+    <StyledHeader>
+      <h1>
+        <Image
+          src={`${process.env.PUBLIC_URL}/images/mainlogo.png`}
+          alt="logo"
+        />
+      </h1>
       <button>잡은포켓몬</button>
-    </div>
+    </StyledHeader>
   );
 };
 
 export default Header;
+
+const Image = styled.img`
+  width: 200px;
+  height: 80px;
+`;
+
+const StyledHeader = styled.div`
+  width: 100%;
+  height: 100px;
+  top: 0;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  box-sizing: border-box;
+`;
