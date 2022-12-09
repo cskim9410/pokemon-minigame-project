@@ -5,30 +5,17 @@ const Backdrop = (props) => {
   return <BackdropDiv onClick={props.onToggle} />;
 };
 
-const Modal = ({ img, tryCount, catchHandler, run }) => {
-  return (
-    <ModalDiv>
-      남은횟수 : {tryCount}
-      <img src={img} />
-      <div>
-        <button type="button" onClick={() => catchHandler()}>
-          <Image src={`${process.env.PUBLIC_URL}/images/button.png`} />
-        </button>
-      </div>
-    </ModalDiv>
-  );
-};
-
 const Catch = ({ name, img, onToggle, catchHandler, tryCount, run }) => {
   return (
     <Fragment>
       <Backdrop onToggle={onToggle} />
-      <Modal
-        img={img}
-        catchHandler={catchHandler}
-        tryCount={tryCount}
-        run={run}
-      />
+      <Div>
+        <Ptag>{tryCount}</Ptag>
+        <PokemonImage src={img} />
+        <button type="button" onClick={() => catchHandler()}>
+          <Image src={`${process.env.PUBLIC_URL}/images/button.png`} />
+        </button>
+      </Div>
     </Fragment>
   );
 };
@@ -45,12 +32,14 @@ const BackdropDiv = styled.div`
   left: 0;
 `;
 
-const ModalDiv = styled.div`
+const Div = styled.div`
+  background-image: url(${process.env.PUBLIC_URL + "/images/catch.png"});
   position: fixed;
   top: 20vh;
   left: 30%;
   z-index: 30;
-
+  width: 614px;
+  height: 550px;
   & > img {
     animation: pokemon infinite 3s alternate;
   }
@@ -66,17 +55,35 @@ const ModalDiv = styled.div`
     }
   }
   & button {
+    top: 430px;
     position: absolute;
     z-index: 50;
     border: none;
     background-color: rgba(0, 0, 0, 0);
+    left: 100px;
   }
 `;
 
 const Image = styled.img`
-  width: 50px;
+  width: 70px;
   cursor: pointer;
   &:hover {
     transform: scale(1.1);
   }
+`;
+
+const PokemonImage = styled.img`
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 30px;
+  left: 380px;
+`;
+
+const Ptag = styled.p`
+  position: absolute;
+  font-size: 50px;
+  font-weight: bold;
+  top: 380px;
+  left: 250px;
 `;
