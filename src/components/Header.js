@@ -25,7 +25,7 @@ const Image = styled.img`
 `;
 
 const StyledHeader = styled.div`
-  width: 100%;
+  width: 800px;
   height: 100px;
   top: 0;
   background-color: red;

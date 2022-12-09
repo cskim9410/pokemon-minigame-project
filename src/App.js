@@ -6,6 +6,7 @@ import { PokemonContext } from "./store/ContextProvider";
 import { getPokemon } from "./api/api";
 import Main from "./components/Main";
 import PokemonList from "./components/PokemonList";
+import styled from "styled-components";
 
 function App() {
   const [appearPokemon, SetAppearPokemon] = useState();
@@ -46,27 +47,35 @@ function App() {
     }
   };
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      {active && (
-        <Catch
-          name={appearPokemon.name}
-          img={appearPokemon.sprites.other["official-artwork"].front_default}
-          onToggle={activeModal}
-          catchHandler={catchHandler}
-          tryCount={tryCount}
-          run={run}
-        />
-      )}
-      <Header />
-      <Routes>
-        <Route path="/" element={<Main activeModal={activeModal} />} />
-      </Routes>
-      <ul>
-        {pokeCtx.pokemon !== [] &&
-          pokeCtx.pokemon.map((pokemon) => <PokemonList pokemon={pokemon} />)}
-      </ul>
-    </BrowserRouter>
+    <Div>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+        {active && (
+          <Catch
+            name={appearPokemon.name}
+            img={appearPokemon.sprites.other["official-artwork"].front_default}
+            onToggle={activeModal}
+            catchHandler={catchHandler}
+            tryCount={tryCount}
+            run={run}
+          />
+        )}
+        <Header />
+        <Routes>
+          <Route path="/" element={<Main activeModal={activeModal} />} />
+        </Routes>
+        <ul>
+          {pokeCtx.pokemon !== [] &&
+            pokeCtx.pokemon.map((pokemon) => <PokemonList pokemon={pokemon} />)}
+        </ul>
+      </BrowserRouter>
+    </Div>
   );
 }
 
 export default App;
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
