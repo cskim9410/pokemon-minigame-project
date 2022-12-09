@@ -38,7 +38,7 @@ function App() {
     }
   };
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       {active && (
         <Catch
           name={appearPokemon.name}
