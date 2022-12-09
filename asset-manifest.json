@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/pokemon-minigame-project/static/js/main.24147f33.js",
+    "main.js": "/pokemon-minigame-project/static/js/main.5a44e2c7.js",
     "index.html": "/pokemon-minigame-project/index.html",
-    "main.24147f33.js.map": "/pokemon-minigame-project/static/js/main.24147f33.js.map"
+    "main.5a44e2c7.js.map": "/pokemon-minigame-project/static/js/main.5a44e2c7.js.map"
   },
   "entrypoints": [
-    "static/js/main.24147f33.js"
+    "static/js/main.5a44e2c7.js"
   ]
 }
