@@ -1,5 +1,5 @@
-import { Fragment, useContext, useEffect, useRef, useState } from "react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Catch from "./components/Catch";
 import Header from "./components/Header";
 import { PokemonContext } from "./store/ContextProvider";
@@ -38,7 +38,7 @@ function App() {
     })();
     const savedPokemon = JSON.parse(sessionStorage.getItem("pokemon"));
     if (savedPokemon !== null) {
-      savedPokemon.map((poke) => pokeCtx.addPok(poke));
+      pokeCtx.initSetPok(savedPokemon);
     }
   }, []);
 

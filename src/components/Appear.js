@@ -1,8 +1,7 @@
-import { useContext, Fragment, useState, useEffect } from "react";
+import { useContext, Fragment } from "react";
 import { PokemonContext } from "../store/ContextProvider";
-import PokemonList from "./PokemonList";
 
-const Appear = ({ appearPokemon, run, clickHandler, tryCount }) => {
+const Appear = ({ appearPokemon, run, clickHandler }) => {
   const pokeCtx = useContext(PokemonContext);
 
   return (

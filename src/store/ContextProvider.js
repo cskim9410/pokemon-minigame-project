@@ -1,9 +1,10 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 export const PokemonContext = createContext({
-  holdingPok: [],
+  pokemon: [],
   addPok: (pokemon) => {},
   removePok: (id) => {},
+  initSetPok: (storageArr) => {},
 });
 
 const ContextProvider = ({ children }) => {
@@ -19,9 +20,17 @@ const ContextProvider = ({ children }) => {
       return state.filter((pok) => pok.id !== id);
     });
   };
+  const initialSetPokemon = (storage) => setHodingPok(storage);
 
   return (
-    <PokemonContext.Provider value={{ pokemon: holdingPok, addPok, removePok }}>
+    <PokemonContext.Provider
+      value={{
+        pokemon: holdingPok,
+        addPok,
+        removePok,
+        initSetPok: initialSetPokemon,
+      }}
+    >
       {children}
     </PokemonContext.Provider>
   );

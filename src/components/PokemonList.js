@@ -8,7 +8,7 @@ const PokemonList = () => {
   const pokeArr = pokeCtx.pokemon.map((pokemon) => {
     return (
       <List key={Math.random()}>
-        <img src={pokemon.sprites["front_default"]} />
+        <img src={pokemon.sprites["front_default"]} alt="pokemonimage" />
         <span>name: {pokemon.name}</span>
         <button onClick={() => pokeCtx.removePok(pokemon.id)}>놓아주기</button>
         <button
