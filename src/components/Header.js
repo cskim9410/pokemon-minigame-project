@@ -12,7 +12,9 @@ const Header = () => {
           />
         </h1>
       </Link>
-      <button>잡은포켓몬</button>
+      <Link to="/bag">
+        <button>잡은포켓몬</button>
+      </Link>
     </StyledHeader>
   );
 };

@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Catch from "./components/Catch";
 import Header from "./components/Header";
@@ -9,10 +9,20 @@ import PokemonList from "./components/PokemonList";
 import styled from "styled-components";
 
 function App() {
+  const opportunity = 5;
   const [appearPokemon, SetAppearPokemon] = useState();
   const [active, setActive] = useState(false);
-  const [tryCount, setTryCount] = useState(2);
+  const [tryCount, setTryCount] = useState(opportunity);
   const pokeCtx = useContext(PokemonContext);
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("pokemon", JSON.stringify(pokeCtx.pokemon));
+    } else {
+      isMounted.current = true;
+    }
+  }, [pokeCtx.pokemon]);
 
   useEffect(() => {
     if (tryCount === 0) {
@@ -26,6 +36,10 @@ function App() {
       const newPok = await getPokemon(Math.floor(Math.random() * 905) + 1);
       SetAppearPokemon(newPok);
     })();
+    const savedPokemon = JSON.parse(sessionStorage.getItem("pokemon"));
+    if (savedPokemon !== null) {
+      savedPokemon.map((poke) => pokeCtx.addPok(poke));
+    }
   }, []);
 
   const activeModal = () => {
@@ -34,12 +48,13 @@ function App() {
   const run = async () => {
     const newPok = await getPokemon(Math.floor(Math.random() * 905) + 1);
     SetAppearPokemon(newPok);
-    setTryCount(2);
+    setTryCount(opportunity);
+    setActive(false);
   };
   const catchHandler = () => {
     if (Math.random() > 0.7) {
       pokeCtx.addPok(appearPokemon);
-      setTryCount(2);
+      setTryCount(opportunity);
       setActive(false);
       run();
     } else {
@@ -62,11 +77,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main activeModal={activeModal} />} />
+          <Route path="/bag" element={<PokemonList />} />
         </Routes>
-        <ul>
-          {pokeCtx.pokemon !== [] &&
-            pokeCtx.pokemon.map((pokemon) => <PokemonList pokemon={pokemon} />)}
-        </ul>
+        {/* <ul>{pokeCtx.pokemon !== [] && <PokemonList />}</ul> */}
       </BrowserRouter>
     </Div>
   );

@@ -1,4 +1,4 @@
-import { Children, createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const PokemonContext = createContext({
   holdingPok: [],

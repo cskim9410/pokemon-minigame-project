@@ -10,11 +10,13 @@ const Catch = ({ name, img, onToggle, catchHandler, tryCount, run }) => {
     <Fragment>
       <Backdrop onToggle={onToggle} />
       <Div>
+        <Name>{name}</Name>
         <Ptag>{tryCount}</Ptag>
         <PokemonImage src={img} />
         <button type="button" onClick={() => catchHandler()}>
           <Image src={`${process.env.PUBLIC_URL}/images/button.png`} />
         </button>
+        <RunBtn onClick={run} />
       </Div>
     </Fragment>
   );
@@ -86,4 +88,21 @@ const Ptag = styled.p`
   font-weight: bold;
   top: 380px;
   left: 250px;
+`;
+
+const Name = styled.p`
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  top: 11px;
+  right: 435px;
+`;
+
+const RunBtn = styled.div`
+  left: 386px;
+  top: 425px;
+  width: 140px;
+  position: absolute;
+  height: 65px;
+  cursor: pointer;
 `;

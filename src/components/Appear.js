@@ -8,7 +8,7 @@ const Appear = ({ appearPokemon, run, clickHandler, tryCount }) => {
   return (
     <Fragment>
       <div>
-        <img src={appearPokemon && appearPokemon.sprites.front_default} />
+        <img src={appearPokemon && appearPokemon.sprites["front_default"]} />
       </div>
       <p>name: {appearPokemon && appearPokemon.name}</p>
       <p>보유중: {pokeCtx.pokemon.length}</p>
