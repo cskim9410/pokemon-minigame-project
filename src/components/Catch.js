@@ -5,7 +5,7 @@ const Backdrop = (props) => {
   return <BackdropDiv onClick={props.onToggle} />;
 };
 
-const Modal = ({ img, tryCount, catchHandler }) => {
+const Modal = ({ img, tryCount, catchHandler, run }) => {
   return (
     <ModalDiv>
       남은횟수 : {tryCount}
@@ -19,11 +19,16 @@ const Modal = ({ img, tryCount, catchHandler }) => {
   );
 };
 
-const Catch = ({ name, img, onToggle, catchHandler, tryCount }) => {
+const Catch = ({ name, img, onToggle, catchHandler, tryCount, run }) => {
   return (
     <Fragment>
       <Backdrop onToggle={onToggle} />
-      <Modal img={img} catchHandler={catchHandler} tryCount={tryCount} />
+      <Modal
+        img={img}
+        catchHandler={catchHandler}
+        tryCount={tryCount}
+        run={run}
+      />
     </Fragment>
   );
 };

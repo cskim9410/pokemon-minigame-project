@@ -3,8 +3,9 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Catch from "./components/Catch";
 import Header from "./components/Header";
 import { PokemonContext } from "./store/ContextProvider";
-import Main from "./components/Main";
 import { getPokemon } from "./api/api";
+import Main from "./components/Main";
+import PokemonList from "./components/PokemonList";
 
 function App() {
   const [appearPokemon, SetAppearPokemon] = useState();
@@ -13,13 +14,20 @@ function App() {
   const pokeCtx = useContext(PokemonContext);
 
   useEffect(() => {
+    if (tryCount === 0) {
+      run();
+      activeModal();
+    }
+  }, [tryCount]);
+
+  useEffect(() => {
     (async () => {
       const newPok = await getPokemon(Math.floor(Math.random() * 905) + 1);
       SetAppearPokemon(newPok);
     })();
   }, []);
 
-  const clickHandler = () => {
+  const activeModal = () => {
     setActive(!active);
   };
   const run = async () => {
@@ -43,25 +51,20 @@ function App() {
         <Catch
           name={appearPokemon.name}
           img={appearPokemon.sprites.other["official-artwork"].front_default}
-          onToggle={clickHandler}
+          onToggle={activeModal}
           catchHandler={catchHandler}
           tryCount={tryCount}
+          run={run}
         />
       )}
       <Header />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Main
-              appearPokemon={appearPokemon}
-              run={run}
-              clickHandler={clickHandler}
-              tryCount={tryCount}
-            />
-          }
-        />
+        <Route path="/" element={<Main activeModal={activeModal} />} />
       </Routes>
+      <ul>
+        {pokeCtx.pokemon !== [] &&
+          pokeCtx.pokemon.map((pokemon) => <PokemonList pokemon={pokemon} />)}
+      </ul>
     </BrowserRouter>
   );
 }
