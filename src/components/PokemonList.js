@@ -1,7 +1,8 @@
 import { useContext, Fragment, useState, useEffect } from "react";
 import { PokemonContext } from "./../store/ContextProvider";
 import styled from "styled-components";
-import { ListButton } from "../commonUi/button";
+import { BackButton, ListButton } from "../commonUi/button";
+import { Link } from "react-router-dom";
 
 const PokemonList = () => {
   const pokeCtx = useContext(PokemonContext);
@@ -28,12 +29,20 @@ const PokemonList = () => {
       </List>
     );
   });
-  console.log(pokeArr);
   useEffect(() => {
     setList(pokeArr);
   }, [pokeCtx.pokemon]);
 
-  return <Ul>{list}</Ul>;
+  return (
+    <Container>
+      <Header>
+        <Link to="/">
+          <BackButton>뒤로가기</BackButton>
+        </Link>
+      </Header>
+      <ul>{list}</ul>
+    </Container>
+  );
 };
 
 export default PokemonList;
@@ -45,7 +54,13 @@ const List = styled.li`
   border-bottom: 1px solid black;
 `;
 
-const Ul = styled.ul`
-  margin: 70px auto 0 auto;
+const Header = styled.div`
+  width: 100%;
+  height: 50px;
+  background-color: lightgray;
+`;
+
+const Container = styled.div`
   max-width: 1024px;
+  margin: 0 auto;
 `;

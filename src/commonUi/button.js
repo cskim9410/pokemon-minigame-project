@@ -31,3 +31,5 @@ export const ListButton = styled(CommonButton)`
     margin-left: 24px;
   }
 `;
+
+export const BackButton = styled(CommonButton)``;

@@ -1,15 +1,27 @@
 import styled from "styled-components";
 import { Fragment, useState } from "react";
 import { MainMenuButton } from "../commonUi/button";
+import { useCaughtPokemon } from "./../data-access/pokemon/hooks/useCaughtPokemon";
 
 const Main = ({ activeModal }) => {
   const [move, setMove] = useState(false);
+  const imgUrlArr = useCaughtPokemon();
   return (
     <Container>
       {move ? (
-        <MoveImage src={`${process.env.PUBLIC_URL}/images/charactor.png`} />
+        <Fragment>
+          {imgUrlArr.map((imgUrl) => {
+            return <MoveImage src={imgUrl} />;
+          })}
+          <MoveImage src={`${process.env.PUBLIC_URL}/images/charactor.png`} />
+        </Fragment>
       ) : (
-        <StaticImage src={`${process.env.PUBLIC_URL}/images/charactor.png`} />
+        <Fragment>
+          {imgUrlArr.map((imgUrl) => {
+            return <StaticImage src={imgUrl} />;
+          })}
+          <StaticImage src={`${process.env.PUBLIC_URL}/images/charactor.png`} />
+        </Fragment>
       )}
       <MainMenuButton
         onClick={() => {
