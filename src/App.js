@@ -80,7 +80,6 @@ function App() {
             <Route path="/" element={<Main activeModal={activeModal} />} />
             <Route path="/bag" element={<PokemonList />} />
           </Routes>
-          {/* <ul>{pokeCtx.pokemon !== [] && <PokemonList />}</ul> */}
         </Content>
       </BrowserRouter>
     </Root>
