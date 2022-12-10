@@ -31,8 +31,11 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   padding: 0 50px;
   box-sizing: border-box;
+  a {
+    width: fit-content;
+  }
 `;
 
 const Logo = styled.img`
-  scale: 0.4;
+  width: 100px;
 `;

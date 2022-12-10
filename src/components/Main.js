@@ -29,7 +29,6 @@ const Main = ({ activeModal }) => {
 export default Main;
 
 const Container = styled.div`
-  margin-top: 70px;
   width: 100%;
   height: 100%;
   background-image: url(${process.env.PUBLIC_URL + "/images/background.png"});

@@ -96,4 +96,5 @@ const Root = styled.div`
 
 const Content = styled.div`
   margin: 0 auto;
+  height: 100%;
 `;
