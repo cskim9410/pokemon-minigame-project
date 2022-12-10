@@ -1,10 +1,13 @@
 {
   "files": {
-    "main.js": "/pokemon-minigame-project/static/js/main.f3baafe2.js",
+    "main.css": "/pokemon-minigame-project/static/css/main.8bb1d9bc.css",
+    "main.js": "/pokemon-minigame-project/static/js/main.63a3849d.js",
     "index.html": "/pokemon-minigame-project/index.html",
-    "main.f3baafe2.js.map": "/pokemon-minigame-project/static/js/main.f3baafe2.js.map"
+    "main.8bb1d9bc.css.map": "/pokemon-minigame-project/static/css/main.8bb1d9bc.css.map",
+    "main.63a3849d.js.map": "/pokemon-minigame-project/static/js/main.63a3849d.js.map"
   },
   "entrypoints": [
-    "static/js/main.f3baafe2.js"
+    "static/css/main.8bb1d9bc.css",
+    "static/js/main.63a3849d.js"
   ]
 }
