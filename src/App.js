@@ -62,7 +62,7 @@ function App() {
     }
   };
   return (
-    <Div>
+    <Root>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         {active && (
           <Catch
@@ -83,14 +83,15 @@ function App() {
           {/* <ul>{pokeCtx.pokemon !== [] && <PokemonList />}</ul> */}
         </Content>
       </BrowserRouter>
-    </Div>
+    </Root>
   );
 }
 
 export default App;
 
-const Div = styled.div`
-  width: 100;
+const Root = styled.div`
+  width: 100%;
+  height: 100vh;
 `;
 
 const Content = styled.div`

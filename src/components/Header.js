@@ -6,12 +6,10 @@ const Header = () => {
   return (
     <StyledHeader>
       <Link to="/">
-        <h1>
-          <Image
-            src={`${process.env.PUBLIC_URL}/images/mainlogo.png`}
-            alt="logo"
-          />
-        </h1>
+        <Logo
+          src={`${process.env.PUBLIC_URL}/images/mainlogo.png`}
+          alt="logo"
+        />
       </Link>
       <Link to="/bag">
         <HeaderMenuButton>잡은포켓몬</HeaderMenuButton>
@@ -22,14 +20,10 @@ const Header = () => {
 
 export default Header;
 
-const Image = styled.img`
-  width: 200px;
-  height: 80px;
-`;
-
 const StyledHeader = styled.div`
+  position: fixed;
   width: 100%;
-  height: 100px;
+  height: 70px;
   top: 0;
   background-color: red;
   display: flex;
@@ -37,4 +31,8 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   padding: 0 50px;
   box-sizing: border-box;
+`;
+
+const Logo = styled.img`
+  scale: 0.4;
 `;

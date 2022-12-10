@@ -5,34 +5,33 @@ import { MainMenuButton } from "../commonUi/button";
 const Main = ({ activeModal }) => {
   const [move, setMove] = useState(false);
   return (
-    <Fragment>
-      <Div>
-        {move ? (
-          <MoveImage src={`${process.env.PUBLIC_URL}/images/charactor.png`} />
-        ) : (
-          <StaticImage src={`${process.env.PUBLIC_URL}/images/charactor.png`} />
-        )}
-        <MainMenuButton
-          onClick={() => {
-            setMove(true);
-            setTimeout(() => {
-              setMove(false);
-              activeModal();
-            }, 2000);
-          }}
-        >
-          탐색!
-        </MainMenuButton>
-      </Div>
-    </Fragment>
+    <Container>
+      {move ? (
+        <MoveImage src={`${process.env.PUBLIC_URL}/images/charactor.png`} />
+      ) : (
+        <StaticImage src={`${process.env.PUBLIC_URL}/images/charactor.png`} />
+      )}
+      <MainMenuButton
+        onClick={() => {
+          setMove(true);
+          setTimeout(() => {
+            setMove(false);
+            activeModal();
+          }, 2000);
+        }}
+      >
+        탐색!
+      </MainMenuButton>
+    </Container>
   );
 };
 
 export default Main;
 
-const Div = styled.div`
+const Container = styled.div`
+  margin-top: 70px;
   width: 100%;
-  height: calc(100vh - 100px);
+  height: 100%;
   background-image: url(${process.env.PUBLIC_URL + "/images/background.png"});
   background-repeat: no-repeat;
   background-size: cover;
