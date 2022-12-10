@@ -24,3 +24,10 @@ export const HeaderMenuButton = styled(CommonButton)`
     background-color: pink;
   }
 `;
+
+export const ListButton = styled(CommonButton)`
+  padding: 12px;
+  + button {
+    margin-left: 24px;
+  }
+`;

@@ -43,16 +43,16 @@ const StaticImage = styled.img`
   position: relative;
   bottom: 150px;
   right: 200px;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 `;
 
 const MoveImage = styled.img`
   position: relative;
   bottom: 150px;
   right: 200px;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   animation: human 2s alternate;
   @keyframes human {
     0% {
