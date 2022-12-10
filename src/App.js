@@ -75,11 +75,13 @@ function App() {
           />
         )}
         <Header />
-        <Routes>
-          <Route path="/" element={<Main activeModal={activeModal} />} />
-          <Route path="/bag" element={<PokemonList />} />
-        </Routes>
-        {/* <ul>{pokeCtx.pokemon !== [] && <PokemonList />}</ul> */}
+        <Content>
+          <Routes>
+            <Route path="/" element={<Main activeModal={activeModal} />} />
+            <Route path="/bag" element={<PokemonList />} />
+          </Routes>
+          {/* <ul>{pokeCtx.pokemon !== [] && <PokemonList />}</ul> */}
+        </Content>
       </BrowserRouter>
     </Div>
   );
@@ -88,7 +90,9 @@ function App() {
 export default App;
 
 const Div = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100;
+`;
+
+const Content = styled.div`
+  margin: 0 auto;
 `;

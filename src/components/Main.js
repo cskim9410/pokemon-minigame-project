@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Fragment, useState } from "react";
+import { MainMenuButton } from "../commonUi/button";
 
 const Main = ({ activeModal }) => {
   const [move, setMove] = useState(false);
@@ -11,7 +12,7 @@ const Main = ({ activeModal }) => {
         ) : (
           <StaticImage src={`${process.env.PUBLIC_URL}/images/charactor.png`} />
         )}
-        <Button
+        <MainMenuButton
           onClick={() => {
             setMove(true);
             setTimeout(() => {
@@ -21,7 +22,7 @@ const Main = ({ activeModal }) => {
           }}
         >
           탐색!
-        </Button>
+        </MainMenuButton>
       </Div>
     </Fragment>
   );
@@ -30,9 +31,11 @@ const Main = ({ activeModal }) => {
 export default Main;
 
 const Div = styled.div`
-  width: 800px;
-  height: 500px;
+  width: 100%;
+  height: calc(100vh - 100px);
   background-image: url(${process.env.PUBLIC_URL + "/images/background.png"});
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,20 +77,5 @@ const MoveImage = styled.img`
       bottom: 150px;
       right: 200px;
     }
-  }
-`;
-
-const Button = styled.button`
-  background-color: red;
-  width: 150px;
-  height: 80px;
-  color: white;
-  font-size: 25px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  &:hover {
-    background-color: pink;
   }
 `;

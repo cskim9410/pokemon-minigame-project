@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { HeaderMenuButton } from "../commonUi/button";
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
         </h1>
       </Link>
       <Link to="/bag">
-        <button>잡은포켓몬</button>
+        <HeaderMenuButton>잡은포켓몬</HeaderMenuButton>
       </Link>
     </StyledHeader>
   );
@@ -27,7 +28,7 @@ const Image = styled.img`
 `;
 
 const StyledHeader = styled.div`
-  width: 800px;
+  width: 100%;
   height: 100px;
   top: 0;
   background-color: red;
